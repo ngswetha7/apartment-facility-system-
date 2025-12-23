@@ -1,0 +1,287 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.startup-wrapper {
+  width: 100vw;
+  min-height: 100vh;   /* ✅ SMALL CHANGE */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+/* BLUR OVERLAY */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* ================= NAVBAR (NO COLOR CHANGE) ================= */
+.navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+}
+
+/* keep whatever color you already have */
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ================= HERO ================= */
+.startup-content {
+  position: relative;
+  z-index: 2;
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  max-width: 720px;
+}
+
+.startup-content h1 {
+  font-size: 3.5rem;
+  color: #ffffff;   /* WHITE TEXT */
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.85);
+}
+
+.startup-content p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #f1f5f9;   /* LIGHT WHITE */
+  line-height: 1.6;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.75);
+}
+
+/* ================= BUTTONS ================= */
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondary-btn:hover {
+  background: #ffffff;
+  color: #1e3a8a;
+}
+
+/* ================= FEATURES ================= */
+.features {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 60px 80px;
+  background: #f8fafc;
+}
+
+.feature-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ================= STATS ================= */
+.stats {
+  position: relative;
+  z-index: 2;
+  background: #0f172a;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.stats h2 {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .startup-content {
+    padding: 30px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .startup-content h1 {
+    font-size: 2.4rem;
+  }
+
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+}
+/* ===== FORCE NAVBAR TEXT BRIGHT WHITE ===== */
+
+.navbar .logo,
+.navbar .nav-links li {
+  color: #ffffff !important;        /* PURE WHITE */
+  opacity: 1 !important;            /* NO DULL */
+  font-weight: 700;
+  text-shadow: 
+    0 0 6px rgba(255,255,255,0.9),
+    0 2px 12px rgba(0,0,0,0.9);      /* GLOW + CONTRAST */
+}
+
+/* Hover also bright */
+.navbar .nav-links li:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* Optional: navbar glass background for max clarity */
+.navbar {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+}
+/* LOGIN CHOICE MODAL */
+.choice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.choice-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+}
+
+.choice-box h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.choice-box button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.close-text {
+  margin-top: 16px;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 14px;
+}
+/* LOGIN CHOICE MODAL */
+.choice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.choice-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+}
+
+.choice-box h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.choice-box button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.close-text {
+  margin-top: 16px;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 14px;
+}
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
