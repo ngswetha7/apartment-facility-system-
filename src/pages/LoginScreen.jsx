@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../styles/LoginScreen.css"; // updated CSS
+import api from "../api/axios"; // ✅ import axios instance
+import "../styles/LoginScreen.css";
 import building from "../assets/images/building.jpg";
-import api from "../api/axios"// replace with your backend
 
 export default function LoginScreen() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleLogin = async () => {
+  
+ const handleLogin = async () => {
     try {
-      const response = await axios.post(`${baseUrl}/api/auth/login`, {
-        email: email.trim(),
+      const response = await api.post("/auth/login", {
+        identifier: email.trim(), // backend expects 'identifier'
         password,
       });
+
 
       const data = response.data;
       localStorage.setItem("token", data.token);
