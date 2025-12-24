@@ -1,25 +1,9 @@
-import "../styles/Startup.css"; // if you moved it to src/styles
-
+import "../styles/Startup.css";
 import apartmentImg from "../assets/apartment.jpg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 export default function Startup() {
   const navigate = useNavigate();
-  const [showLoginChoice, setShowLoginChoice] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Check if user is logged in on component mount
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-    
-    if (token && (role === "resident" || role === "user")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
 
   return (
     <div
@@ -29,14 +13,14 @@ export default function Startup() {
       {/* Overlay */}
       <div className="bg-overlay"></div>
 
-      {/* SIMPLE NAVBAR - Only Logo */}
+      {/* NAVBAR */}
       <nav className="navbar">
         <div className="logo" onClick={() => navigate("/")}>
           Efficient
         </div>
       </nav>
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <div className="startup-content">
         <h1 className="fade-in">
           Efficient Resident <br /> Facility Management
@@ -48,10 +32,10 @@ export default function Startup() {
         </p>
 
         <div className="buttons fade-in delay-2">
-          {/* Get Started Button - ALWAYS shows modal for login choice */}
+          {/* ✅ DIRECT LOGIN */}
           <button
             className="primary-btn"
-            onClick={() => setShowLoginChoice(true)}
+            onClick={() => navigate("/")}
           >
             Get Started
           </button>
@@ -64,42 +48,6 @@ export default function Startup() {
           </button>
         </div>
       </div>
-
-      {/* LOGIN CHOICE MODAL */}
-      {showLoginChoice && (
-        <div className="choice-overlay" onClick={() => setShowLoginChoice(false)}>
-          <div className="choice-box" onClick={(e) => e.stopPropagation()}>
-            <h2>Choose Login Type</h2>
-            <button
-              className="primary-btn"
-              onClick={() => {
-                setShowLoginChoice(false);
-                navigate("/resident/login");
-              }}
-              style={{ marginBottom: "10px" }}
-            >
-              Resident Login
-            </button>
-            <button
-              className="secondary-btn"
-              onClick={() => {
-                setShowLoginChoice(false);
-                navigate("/admin/login");
-              }}
-            >
-              Admin Login
-            </button>
-            <div 
-              className="close-text" 
-              onClick={() => setShowLoginChoice(false)}
-            >
-              Cancel
-            </div>
-          </div>
-        </div>
-      )}
-
-    
 
       {/* STATS */}
       <section className="stats">

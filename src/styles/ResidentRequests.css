@@ -1,0 +1,82 @@
+.resident-requests-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.center {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.request-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  resize: none;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background: #4b6cb7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.submit-btn:hover {
+  background: #3a54a2;
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.request-card {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .request-form {
+    flex-direction: column;
+  }
+}

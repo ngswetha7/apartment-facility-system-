@@ -1,42 +1,61 @@
-// src/pages/resident/ResidentDashboard.jsx
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const ResidentDashboard = ({ token, username }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+import ResidentHome from "./ResidentHome";
+import ResidentPaymentsPage from "./PaymentsPage/ResidentPaymentsPage";
+import ResidentRequests from "./ResidentRequests";
+import ResidentAnnouncements from "./ResidentAnnouncements";
+import ResidentProfile from "./ResidentProfile";
 
-  const tabs = [
-    <div>Resident Home</div>,
-    <div>Resident Payments</div>,
-    <div>Resident Requests</div>,
-    <div>Resident Announcements</div>,
-    <div>Resident Profile</div>,
-  ];
+import { baseUrl } from "../constants";
+import "../../styles/ResidentDashboard.css";
 
-  const navItems = ["Home", "Payments", "Requests", "Announcements", "Profile"];
+export default function ResidentDashboard({ token, username }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    const checkIsOwner = async () => {
+      try {
+        const res = await axios.get(`${baseUrl}/api/residents/is-owner`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setIsOwner(res.data?.isOwner || false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    checkIsOwner();
+  }, [token]);
+
+  const renderBody = () => {
+    switch (selectedIndex) {
+      case 0:
+        return (
+          <ResidentHome
+            username={username}
+            token={token}
+            onCardTap={setSelectedIndex}
+            onNavSelect={setSelectedIndex}   // ✅ IMPORTANT
+          />
+        );
+      case 1:
+        return <ResidentPaymentsPage token={token} username={username} />;
+      case 2:
+        return <ResidentRequests token={token} />;
+      case 3:
+        return <ResidentAnnouncements token={token} />;
+      case 4:
+        return <ResidentProfile token={token} />;
+      default:
+        return <div>Page not found</div>;
+    }
+  };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <div style={{ flex: 1 }}>{tabs[currentIndex]}</div>
-      <div style={{ display: "flex", borderTop: "1px solid #ccc" }}>
-        {navItems.map((label, index) => (
-          <div
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            style={{
-              flex: 1,
-              textAlign: "center",
-              padding: 10,
-              cursor: "pointer",
-              background: currentIndex === index ? "#484FD7" : "#fff",
-              color: currentIndex === index ? "#fff" : "#000",
-            }}
-          >
-            {label}
-          </div>
-        ))}
-      </div>
+    <div className="dashboard-container">
+      <main className="dashboard-body">{renderBody()}</main>
     </div>
   );
-};
+}
 
-export default ResidentDashboard;

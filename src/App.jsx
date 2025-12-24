@@ -1,31 +1,31 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Startup from "./pages/Startup"; // import Startup page
+// Main Pages
+import Startup from "./pages/Startup";
 import LoginScreen from "./pages/LoginScreen";
+
+// Dashboards
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AssociateDashboard from "./pages/associate/AssociateDashboard";
-import ResidentDashboard from "./pages/resident/ResidentDashboard";
 import TenantDashboard from "./pages/tenant/TenantDashboard";
+import ResidentDashboard from "./pages/resident/ResidentDashboard"; // ✅ FIX
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Startup page */}
-        <Route path="/" element={<Startup />} />
-
-        {/* Login pages */}
-        <Route path="/resident/login" element={<LoginScreen />} />
-        <Route path="/admin/login" element={<LoginScreen />} />
-        <Route path="/associate/login" element={<LoginScreen />} />
-        <Route path="/tenant/login" element={<LoginScreen />} />
+        {/* Startup & Login */}
+        <Route path="/startup" element={<Startup />} />
+        <Route path="/" element={<LoginScreen />} />
 
         {/* Dashboards */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/associate" element={<AssociateDashboard />} />
-        <Route path="/resident" element={<ResidentDashboard token="dummy" username="user" />} />
-        <Route path="/tenant" element={<TenantDashboard token="dummy" username="user" />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/associate-dashboard" element={<AssociateDashboard />} />
+        <Route path="/tenant-dashboard" element={<TenantDashboard />} />
+        <Route
+          path="/resident-dashboard"
+          element={<ResidentDashboard token="dummyToken" username="Swetha" />}
+        />
       </Routes>
     </Router>
   );
